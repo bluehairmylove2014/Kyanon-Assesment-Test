@@ -1,0 +1,33 @@
+<div class="login">
+    <p>Login</p>
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="signin()">
+        <div class="data-entry">
+            <label for="login-email-input">Email:</label>
+            <input 
+                type="email" 
+                id="login-email-input" 
+                placeholder="example@kyanon.digital" 
+                formControlName="email"
+            />
+        </div>
+
+        <div class="data-entry">
+            <label for="login-psw-input">Password:</label>
+            <input 
+                type="password" 
+                id="login-psw-input" 
+                placeholder="abc123"
+                formControlName="password"
+                #pswLogin
+            />
+        </div>
+        <div class="management">
+            <div class="show-psw">
+                <input type="checkbox" id="checkbox" formControlName="showPswStatus" (change)="showPassword()">
+                <label for="checkbox">Show Password</label>
+            </div>
+            <button type="submit">Sign in</button>
+        </div>
+        <p class="error-noti" #errorLogin></p>
+    </form>
+</div>

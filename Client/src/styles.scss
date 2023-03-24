@@ -1,0 +1,66 @@
+
+body {
+    margin: 0;
+}
+
+@mixin dflex($jcontent, $alignItems) {
+    display: flex;
+    justify-content: $jcontent;
+    align-items: $alignItems;
+}
+
+@mixin dflex-dir($jcontent, $dir) {
+    display: flex;
+    justify-content: $jcontent;
+    flex-direction: $dir;
+}
+
+/* Font config */
+@font-face {
+    font-family: Kollektif;
+    src: url('./assets/fonts/kollektif/Kollektif.ttf');
+}
+@font-face {
+    font-family: BebasNeue;
+    src: url('./assets/fonts/bebas_neue/BebasNeue-Regular.otf');
+}
+@font-face {
+    font-family: PlaylistScript;
+    src: url('./assets/fonts/PlaylistFF/PlaylistScript.otf');
+}
+@font-face {
+    font-family: Roboto_Mono;
+    src: url('./assets/fonts/Roboto_Mono/RobotoMono-Medium.ttf');
+}
+@font-face {
+    font-family: League_Spartan;
+    src: url('./assets/fonts/League_Spartan/LeagueSpartan-Medium.ttf');
+}
+@font-face {
+    font-family: MontserratBold;
+    src: url('./assets/fonts/Montserrat/static/Montserrat-Bold.ttf');
+}
+@font-face {
+    font-family: MontserratMedium;
+    src: url('./assets/fonts/Montserrat/static/Montserrat-Medium.ttf');
+}
+@font-face {
+    font-family: Sanchez;
+    src: url('./assets/fonts/Sanchez/Sanchez-Regular.ttf');
+}
+@font-face {
+    font-family: miracles;
+    src: url('./assets/fonts/miracles-autumn-font/MiraclesAutumn-Rpx1A.otf');
+}
+@font-face {
+    font-family: InterBold;
+    src: url('./assets/fonts/Inter/Inter-Bold.ttf'); 
+}
+@font-face {
+    font-family: OpenSans;
+    src: url('./assets/fonts/Open_Sans/OpenSans.ttf'); 
+}
+@font-face {
+    font-family: InterBold;
+    src: url('./assets/fonts/Inter/Inter-Bold.ttf'); 
+}

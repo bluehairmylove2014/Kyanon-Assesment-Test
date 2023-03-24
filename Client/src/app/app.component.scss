@@ -1,0 +1,10 @@
+@import '../styles.scss';
+
+.app {
+    background-image: url('../assets/backgrounds/login-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    @include dflex(center, center);
+}

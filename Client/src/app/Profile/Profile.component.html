@@ -1,0 +1,41 @@
+<div class="profile">
+    <p>Profile</p>
+    <form class="form" (ngSubmit)="updateDetail()" #profileForm>
+        <div class="data-entry">
+            <label for="fullname-input">Full name:</label>
+            <input type="text" id="fullname-input" [(ngModel)]="ud_tempVersion.fullname" name="fullname" [disabled]="isDisabled"/>
+        </div>
+
+        <div class="data-entry">
+            <label for="dob-input">Day Of Birth:</label>
+            <input type="date" id="dob-input"  [(ngModel)]="ud_tempVersion.dob" name="dob" [disabled]="isDisabled"/>
+        </div>
+
+        <div class="data-entry">
+            <label for="pemail-input">Email:</label>
+            <input type="email" id="pemail-input"  [(ngModel)]="ud_tempVersion.email" name="pemail" [disabled]="isDisabled"/>
+        </div>
+
+        <div class="data-entry">
+            <label for="pe">Phone:</label>
+            <div class="phone-entry" id="pe">
+                <select [(ngModel)]="ud_tempVersion.phoneCode" (change)="onPhoneCodeChange()" name="phoneCode" [disabled]="isDisabled">
+                    <option 
+                      [ngValue]="pcode.code"
+                      *ngFor="let pcode of phoneCodes"
+                      
+                    >
+                      <!-- {{pcode.country}} ({{pcode.code}}) -->
+                      {{pcode.code}}
+                    </option>
+                  </select>
+                  
+                <input type="text" [(ngModel)]="ud_tempVersion.phone" name="phone" [disabled]="isDisabled"/>
+            </div>
+        </div>
+        <div class="management">
+            <button type="submit">Update</button>
+            <button type="button" (click)="onCancelClick()">Cancel</button>
+        </div>
+    </form>
+</div>
