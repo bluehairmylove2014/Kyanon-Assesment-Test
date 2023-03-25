@@ -6,5 +6,19 @@
     background-repeat: no-repeat;
     width: 100vw;
     height: 100vh;
+    position: relative;
     @include dflex(center, center);
+    .copyright {
+        font-family: 'MontserratMedium';
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        text-align: center;
+        font-size: 10px;
+        a {
+            color: white;
+        }
+    }
 }

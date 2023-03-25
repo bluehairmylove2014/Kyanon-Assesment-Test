@@ -11,14 +11,4 @@ import { ProfileComponent } from './Profile/Profile.component';
 })
 export class AppComponent {
   title = 'Kyanon Login';
-  userDetail = {
-    "email": "",
-    "fullname": "",
-    "dob": "",
-    "phoneCode": "",
-    "phone": ""
-  }
-  updateUserDetail(detail: any) {
-    this.userDetail = detail;
-  }
 }

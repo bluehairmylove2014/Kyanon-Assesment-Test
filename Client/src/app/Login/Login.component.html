@@ -1,8 +1,10 @@
 <div class="login">
-    <p>Login</p>
-    <form class="form" [formGroup]="loginForm" (ngSubmit)="signin()">
+    <form class="form" [ngClass]="{'unactive': isLogin, 'unvisible': (isLogin && isFirstLoad)}" [formGroup]="loginForm" (ngSubmit)="signin()" #lf>
+        <p>Login</p>
+        <span>One more step to unlock your profile <img src="../../assets/graphics/ezgif.com-rotate.gif" /></span>
         <div class="data-entry">
             <label for="login-email-input">Email:</label>
+            <i class="fi fi-sr-circle-envelope"></i>
             <input 
                 type="email" 
                 id="login-email-input" 
@@ -13,10 +15,11 @@
 
         <div class="data-entry">
             <label for="login-psw-input">Password:</label>
+            <i class="fi fi-sr-lock"></i>
             <input 
                 type="password" 
                 id="login-psw-input" 
-                placeholder="abc123"
+                placeholder="wewillhireyou"
                 formControlName="password"
                 #pswLogin
             />
@@ -28,6 +31,33 @@
             </div>
             <button type="submit">Sign in</button>
         </div>
-        <p class="error-noti" #errorLogin></p>
     </form>
+    <div class="to-absolute-top">
+        <img src="../../assets/graphics/red-kyanon-logo.png">
+    </div>
+    <div class="to-absolute-bottom">
+        <div class="decorate-bottom">
+            <div class="slider-holder" #sliderHolder>
+                <img class="slider" [ngClass]="{'fadeout': isLogin, 'unvisible': (isLogin && isFirstLoad)}" src="../../assets/graphics/slider.png"/>
+                <img class="slider" [ngClass]="{'fadeout': isLogin, 'unvisible': (isLogin && isFirstLoad)}" src="../../assets/graphics/slider.png" />
+            </div>
+            <div class="msg" #wrongMsg>
+                <img src="../../assets/graphics/enoti-wrong.png" class="wrong-msg" id="enoti-wrong">
+                <img src="../../assets/graphics/enoti-empty.png" class="wrong-msg" id="enoti-empty">
+                <img src="../../assets/graphics/enoti-email-invalid.png" class="wrong-msg" id="enoti-email-invalid">
+                <img src="../../assets/graphics/enoti-psw-short.png" class="wrong-msg" id="enoti-psw-short">
+            </div>
+            <div class="bus-holder">
+                <img class="bus" [ngClass]="{'active': isLogin, 'unvisible': (isLogin && isFirstLoad)}" src="../../assets/graphics/bus.gif" #bus/>
+            </div>
+            <div class="airplane-holder">
+                <img class="airplane" [ngClass]="{'active': isLogin, 'unvisible': (!isLogin && isFirstLoad)}" src="../../assets/graphics/AirplaneAnimation.gif" #airplane/>
+            </div>
+        </div>
+    </div>
+    <!-- Logout option -->
+    <div class="logout-holder" [ngClass]="{'active': isLogin, 'unvisible': (!isLogin && isFirstLoad)}" #logoutHolder>
+        <p>Hope you have a great experience with us ...</p>
+        <button type="button" (click)="signout()">Sign out</button>
+    </div>
 </div>

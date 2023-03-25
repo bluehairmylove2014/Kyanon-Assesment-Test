@@ -15,6 +15,11 @@ body {
     flex-direction: $dir;
 }
 
+.unvisible {
+    visibility: hidden;
+    opacity: 0;
+}
+
 /* Font config */
 @font-face {
     font-family: Kollektif;
@@ -61,6 +66,6 @@ body {
     src: url('./assets/fonts/Open_Sans/OpenSans.ttf'); 
 }
 @font-face {
-    font-family: InterBold;
-    src: url('./assets/fonts/Inter/Inter-Bold.ttf'); 
+    font-family: TekoBold;
+    src: url('./assets/fonts/Teko/Teko-Bold.ttf'); 
 }

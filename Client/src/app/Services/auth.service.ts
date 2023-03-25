@@ -56,10 +56,10 @@ export class AuthService {
               localStorage.setItem(this.idtoken_keyword, res.idToken);
               localStorage.setItem(this.expires_keyword, JSON.stringify(expiresAt.valueOf()));
   
-              resolve({ status: true, userid: userid, msg: 'Login successfully' });
+              resolve({ status: true, msg: 'Login successfully' });
             }
             else {
-              reject({ status: false, userid: null, msg: 'Wrong email or password!' });
+              reject({ status: false, msg: 'Wrong email or password!' });
             }
           }
         )
@@ -77,10 +77,10 @@ export class AuthService {
     const expiresAt = JSON.parse(str);
     return moment().isBefore(moment(expiresAt));
   }
-  setUsername(new_usn: string): void {
+  setUID(new_usn: string): void {
     localStorage.setItem(this.userid_keyword, new_usn);
   }
-  getUsername(): string {
+  getUID(): string {
     let username = localStorage.getItem(this.userid_keyword);
     return username ? username : '';
   }

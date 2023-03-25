@@ -1,57 +1,201 @@
 @import '../../styles.scss';
 
 .profile {
-    @include dflex-dir(center, column);
     width: 365px;
     height: 600px;
-    background-color: rgba(255,255,255,0.95);
+    background-color: rgba(255,255,255,1);
     box-shadow: 0px 0px 5px #888888;
     border-radius: 1.5rem;
     margin: 0 15px;
-    padding: 0px 25px;
-    & > p {
-        font-family: 'League_Spartan';
-        font-size: 20px;
-        margin-bottom: 3rem;
+    overflow-y: hidden;
+    @include dflex-dir(flex-start, column);
+    .profile-banner {
+        position: relative;
+        background-image: url('../../assets/backgrounds/lachlan-gowen.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-top-left-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        height: 120px;
+        @include dflex-dir(center, column);
+        flex-wrap: wrap;
+        & > p{
+            position: relative;
+            z-index: 999;
+            filter: drop-shadow(0px 0px 4px #2e2e2e);
+            font-family: 'MontserratBold';
+            font-size: 30px;
+            color: white;
+            margin: 0;
+            margin-top: auto;
+            text-transform: uppercase;
+            width: 95%;
+            text-align: right;
+        }
+        & > span {
+            position: relative;
+            z-index: 999;
+            font-family: 'MontserratMedium';
+            color: white;
+            font-size: 10px;
+            margin: 0!important;
+            text-align: right;
+            margin-bottom: auto!important;
+            width: 95%;
+            margin: 0 3rem auto 3rem;
+            filter: drop-shadow(0px 0px 4px #727272);
+        }
+        .dark-background {
+            position: absolute;
+            width: 80%;
+            height: 100%;
+            border-top-left-radius: 1.5rem;
+            border-top-right-radius: 1.5rem;
+            top: 0;
+            right: 0;
+            background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+        }
     }
     .form {
         @include dflex-dir(center, row);
         flex-wrap: wrap;
-        width: 100%;
-        .data-entry {
+        width: calc(100% - 50px);
+        padding: 0px 25px;
+        position: relative;
+        flex-grow: 1;
+        padding-top: 4rem;
+        .prevent-ifnot-login {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            z-index: 999;
+            cursor: not-allowed;
+            @include dflex(center, center);
+            background-color: rgba(0, 0, 0, 0.7);
+            transition: all 0.2s ease;
+            .wrapper {
+                @include dflex(center, center);
+                flex-wrap: wrap;
+                margin-bottom: 5rem;
+                .lock {
+                    display: block;
+                    width: 101.85px; 
+                    height: 115.5px;
+                    margin: 0 auto;
+                    background: url('../../assets/graphics/lock-frames.png') left center no-repeat;
+                    background-size: 4788px 115.5px;
+                    animation: lock-gif 1.2s steps(47) forwards;
+                    filter: drop-shadow(0px 0px 4px #5a5a5a);
+                    animation-play-state: paused;
+                }
+                p, span {
+                    font-family: 'TekoBold';
+                    text-align: center;
+                    text-transform: uppercase;
+                    width: 100%;
+                    filter: drop-shadow(0px 0px 4px #5a5a5a);
+                }
+                p {
+                    color: #db783b;
+                    font-size: 20px;
+                    margin-bottom: 0;
+                }
+                span {
+                    color: #dadada;
+                    font-size: 14px;
+                }
+            }
+            &:hover {
+                background-color: rgba(66, 20, 20, 0.7);
+            }
+        }
+        .data-entry {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
             @include dflex-dir(center, column);
+            border-radius: 0.4rem;
+            border: 1.6px solid rgb(124, 124, 124);
+            z-index: 9;
+            transition: box-shadow 0.2s ease;
+            &:focus {
+                border: 1.6px solid rgb(0, 0, 0);
+                box-shadow: -1px 1px 3px #888888;
+            }
+            &:hover  {
+                border: 1.6px solid rgb(0, 0, 0);
+                box-shadow: -1px 1px 3px #888888;
+            }
             label {
+                position: absolute;
+                top: -9px;
+                left: 10px;
+                background-color: transparent;
                 font-family: 'League_Spartan';
-                margin: 0px 0px 5px 2px;
-                color: rgb(0, 0, 0);
-                opacity: 0.5;
+                padding: 0px 6px;
+                color: rgb(94, 94, 94);
+            }
+            label::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                z-index: -1;
+                width: calc(100% + 10px);
+                height: calc(100% + 10px);
             }
             input {
                 padding: 3px 20px 2px 20px;
                 font-family: 'MontserratMedium';
-                line-height: 35px;
-                margin-bottom: 20px;
-                border-radius: 0.4rem;
-                border: 1px solid black;
-                cursor: not-allowed;
+                line-height: 45px;
+                border: none;
+                background-color: transparent;
+                outline: none;
             }
-            .phone-entry {
+        }
+        .phone-entry {
+            width: 100%;
+            label {
+                font-family: 'League_Spartan';
+                padding: 0px 16px;
+                color: rgb(94, 94, 94);
+            }
+            .phone-holder {
                 width: 100%;
+                padding-top: 5px;
                 @include dflex-dir(flex-start, row);
                 input {
                     flex-grow: 1;
+                    padding: 3px 20px 2px 20px;
+                    font-family: 'MontserratMedium';
+                    line-height: 45px;
+                    background-color: transparent;
+                    outline: none;
+                    border-top-right-radius: 0.4rem;
+                    border-bottom-right-radius: 0.4rem;
+                    border: 1.6px solid rgb(124, 124, 124);
+                    transition: box-shadow 0.2s ease;
+                }
+                input:focus, select:focus, input:hover, select:hover {
+                    border: 1.6px solid rgb(0, 0, 0);
+                    box-shadow: -1px 1px 3px #888888;
                 }
                 select {
+                    border-top-left-radius: 0.4rem;
+                    border-bottom-left-radius: 0.4rem;
                     font-family: 'MontserratMedium';
-                    height: 42px;
+                    line-height: 45px;
                     width: 70px;
                     padding-left: 10px;
                     background-color: white;
-                    margin-right: 20px;
-                    border-radius: 0.4rem;
-                    border: 1px solid black;
-                    cursor: not-allowed;
+                    border: 1.6px solid rgb(124, 124, 124);
+                    border-right: none!important;
+                    outline: none;
+                    transition: box-shadow 0.2s ease;
                 }
             }
         }
@@ -86,4 +230,9 @@
             }
         }
     }
+}
+
+@keyframes lock-gif {
+    0% { background-position: 0 0; }
+    100% { background-position: -4788px 0; }
 }

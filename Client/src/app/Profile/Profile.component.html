@@ -1,25 +1,36 @@
 <div class="profile">
-    <p>Profile</p>
+    <div class="profile-banner">
+        <p>Profile</p>
+        <span>Change your profile information, it will update immediately!</span>
+        <div class="dark-background"></div>
+    </div>
     <form class="form" (ngSubmit)="updateDetail()" #profileForm>
+        <div class="prevent-ifnot-login" #preventWall>
+            <div class="wrapper">
+                <div class="lock"></div>
+                <p>profile is unavailable</p>
+                <span>login to unlock profile</span>
+            </div>
+        </div>
         <div class="data-entry">
             <label for="fullname-input">Full name:</label>
-            <input type="text" id="fullname-input" [(ngModel)]="ud_tempVersion.fullname" name="fullname" [disabled]="isDisabled"/>
+            <input type="text" id="fullname-input" [(ngModel)]="ud_tempVersion.fullname" name="fullname"/>
         </div>
 
         <div class="data-entry">
             <label for="dob-input">Day Of Birth:</label>
-            <input type="date" id="dob-input"  [(ngModel)]="ud_tempVersion.dob" name="dob" [disabled]="isDisabled"/>
+            <input type="date" id="dob-input"  [(ngModel)]="ud_tempVersion.dob" name="dob"/>
         </div>
 
         <div class="data-entry">
             <label for="pemail-input">Email:</label>
-            <input type="email" id="pemail-input"  [(ngModel)]="ud_tempVersion.email" name="pemail" [disabled]="isDisabled"/>
+            <input type="email" id="pemail-input"  [(ngModel)]="ud_tempVersion.email" name="pemail"/>
         </div>
 
-        <div class="data-entry">
-            <label for="pe">Phone:</label>
-            <div class="phone-entry" id="pe">
-                <select [(ngModel)]="ud_tempVersion.phoneCode" (change)="onPhoneCodeChange()" name="phoneCode" [disabled]="isDisabled">
+        <div class="phone-entry">
+            <label for="ph">Phone Number:</label>
+            <div class="phone-holder" id="ph">
+                <select [(ngModel)]="ud_tempVersion.phoneCode" name="phoneCode">
                     <option 
                       [ngValue]="pcode.code"
                       *ngFor="let pcode of phoneCodes"

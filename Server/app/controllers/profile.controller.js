@@ -55,7 +55,6 @@ exports.setData = function(req, res, next) {
         // Send fail response to client
         if(isExist) {
             // Update database
-            console.log('sending...');
             fs.writeFileSync(databasePath, JSON.stringify(jsondata));
             // Send success response to client
             res.status(200).json({status: true, msg: ''});

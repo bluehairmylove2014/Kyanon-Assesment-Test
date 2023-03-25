@@ -8,10 +8,12 @@ import { UserService } from '../Services/user.service';
   styleUrls: ['./Profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  @Input() userData: any;
   @ViewChild('profileForm') profileFormRef!: ElementRef;
+  @ViewChild('preventWall') preventWallRef!: ElementRef;
 
   isDisabled = true;
+  user_id: string = '';
+  ud_backupVersion !: any;
   ud_tempVersion = {
     "email": "",
     "fullname": "",
@@ -48,40 +50,66 @@ export class ProfileComponent implements OnInit {
   ) { }
   // Methods
   updateDetail() {
-    this.user_service.setUserDetail(this.ud_tempVersion)
-  }
-  onPhoneCodeChange() {
-    console.log(this.ud_tempVersion.phoneCode);
-    
+    // Using user_service to set user detail on server
+    this.user_service.setUserDetail(this.ud_tempVersion);
+    // Update new backup user detail
+    this.ud_backupVersion = {...this.ud_tempVersion};
   }
   onCancelClick() {
-    this.ud_tempVersion = {...this.userData};
+    // return temp version to backup version
+    this.ud_tempVersion = {...this.ud_backupVersion};
   }
 
-
-  // Hooks
-  ngOnInit() {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    if(changes['userData']) {
-      this.ud_tempVersion = {...this.userData};
-      // dob: (ISO 8601).substring(0, 10)
-      // Check login to open editable feature of input
-      if(this.isDisabled && this.auth_service.isLogin()) {
-        // Get all input and open editable cursor
-        const input_list = this.profileFormRef.nativeElement.querySelectorAll('input');
-        input_list.forEach((inp: any) => { this.renderer.setStyle(inp, 'cursor', 'auto') })
-        // Get select and open editable cursor
-        const select_list = this.profileFormRef.nativeElement.querySelectorAll('select');
-        select_list.forEach((sl: any) => { this.renderer.setStyle(sl, 'cursor', 'auto') })
-
-        // Set isOpen is true avoid run next time if still signed in
+  getUserData():void {
+    if(this.auth_service.isLogin()) {
+      // Get user_id from auth_service
+      this.user_id = this.auth_service.getUID();
+      this.user_id && this.user_service.getUserDetail(this.user_id)
+      .then(user_detail => {
+        // Data handle
+        this.ud_backupVersion = user_detail;
+        this.ud_tempVersion = {...this.ud_backupVersion};
+        // Set mark
         this.isDisabled = false;
-      }
+      })
+      .catch(err => {
+        alert(err);
+      })
     }
   }
 
+  // Hooks
+  ngOnInit() {
+    this.getUserData();
+  }
+  ngDoCheck(): void {
+    if(this.preventWallRef) {    
+      if(this.auth_service.isLogin()) {
+        this.isDisabled && this.getUserData();
+        const lock = this.preventWallRef.nativeElement.querySelector('.lock');
+        lock && this.renderer.setStyle(lock, 'animation-play-state', 'running');
+        
+        setTimeout(() => {
+          this.renderer.setStyle(this.preventWallRef.nativeElement, 'display','none');
+        }, 1000);
+      }
+      else {
+        if(!this.isDisabled) {
+          this.isDisabled = true
+          // Erase data
+          this.ud_backupVersion = null;
+          this.ud_tempVersion = {
+            "email": "",
+            "fullname": "",
+            "dob": "",
+            "phoneCode": "",
+            "phone": ""
+          }
+        }
+        const lock = this.preventWallRef.nativeElement.querySelector('.lock');
+        lock && this.renderer.setStyle(lock, 'animation-play-state', 'paused');
+        this.renderer.setStyle(this.preventWallRef.nativeElement, 'display','flex');
+      }
+    }
+  }
 }
