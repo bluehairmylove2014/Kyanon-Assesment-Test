@@ -1,7 +1,7 @@
 # Kyanon-Assesment-Test
 
 # NOTE!!!
-Introduction language: En / Vi (Under En)  
+Introduction language: En / Vi (Below the En instructions.)  
 DEMO VIDEO (Recommend):
 
 # Introduction
