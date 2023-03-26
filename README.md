@@ -2,7 +2,7 @@
 
 # NOTE!!!
 Introduction language: En / Vi (Below the En instructions.)  
-DEMO VIDEO (Recommend):
+DEMO VIDEO (Recommend): https://youtu.be/eD3Xd1_1oLk
 
 # Introduction
 
