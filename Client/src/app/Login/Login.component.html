@@ -1,5 +1,11 @@
 <div class="login">
-    <form class="form" [ngClass]="{'unactive': isLogin, 'unvisible': (isLogin && isFirstLoad)}" [formGroup]="loginForm" (ngSubmit)="signin()" #lf>
+    <form 
+        class="form" 
+        [ngClass]="{'unactive': isLogin, 'unvisible': (isLogin && isFirstLoad)}" 
+        [formGroup]="loginForm" 
+        (ngSubmit)="signin()" 
+        #lf
+    >
         <p>Login</p>
         <span>One more step to unlock your profile <img src="../../assets/graphics/ezgif.com-rotate.gif" /></span>
         <div class="data-entry">
@@ -19,7 +25,7 @@
             <input 
                 type="password" 
                 id="login-psw-input" 
-                placeholder="wewillhireyou"
+                placeholder="iloveKyanonDigital"
                 formControlName="password"
                 #pswLogin
             />
@@ -38,8 +44,16 @@
     <div class="to-absolute-bottom">
         <div class="decorate-bottom">
             <div class="slider-holder" #sliderHolder>
-                <img class="slider" [ngClass]="{'fadeout': isLogin, 'unvisible': (isLogin && isFirstLoad)}" src="../../assets/graphics/slider.png"/>
-                <img class="slider" [ngClass]="{'fadeout': isLogin, 'unvisible': (isLogin && isFirstLoad)}" src="../../assets/graphics/slider.png" />
+                <img 
+                    class="slider" 
+                    [ngClass]="{'fadeout': isLogin, 'unvisible': (isLogin && isFirstLoad)}" 
+                    src="../../assets/graphics/slider.png"
+                />
+                <img 
+                    class="slider" 
+                    [ngClass]="{'fadeout': isLogin, 'unvisible': (isLogin && isFirstLoad)}" 
+                    src="../../assets/graphics/slider.png" 
+                />
             </div>
             <div class="msg" #wrongMsg>
                 <img src="../../assets/graphics/enoti-wrong.png" class="wrong-msg" id="enoti-wrong">
@@ -48,10 +62,20 @@
                 <img src="../../assets/graphics/enoti-psw-short.png" class="wrong-msg" id="enoti-psw-short">
             </div>
             <div class="bus-holder">
-                <img class="bus" [ngClass]="{'active': isLogin, 'unvisible': (isLogin && isFirstLoad)}" src="../../assets/graphics/bus.gif" #bus/>
+                <img 
+                    class="bus" 
+                    [ngClass]="{'active': isLogin, 'unvisible': (isLogin && isFirstLoad)}" 
+                    src="../../assets/graphics/bus.gif" 
+                    #bus
+                />
             </div>
             <div class="airplane-holder">
-                <img class="airplane" [ngClass]="{'active': isLogin, 'unvisible': (!isLogin && isFirstLoad)}" src="../../assets/graphics/AirplaneAnimation.gif" #airplane/>
+                <img 
+                    class="airplane" 
+                    [ngClass]="{'active': isLogin, 'unvisible': (!isLogin && isFirstLoad)}" 
+                    src="../../assets/graphics/AirplaneAnimation.gif" 
+                    #airplane
+                />
             </div>
         </div>
     </div>

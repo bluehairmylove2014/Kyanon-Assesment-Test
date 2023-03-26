@@ -22,3 +22,21 @@
         }
     }
 }
+
+@media (max-width: 992px) {
+    .app {
+        @include dflex-dir(center, column);
+        height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .copyright {
+        span {
+            display: none;
+        }
+    }
+}
+@media (max-width: 500px) {
+
+}

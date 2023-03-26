@@ -1,7 +1,7 @@
 @import '../../styles.scss';
 
 .profile {
-    width: 365px;
+    width: 415px;
     height: 600px;
     background-color: rgba(255,255,255,1);
     box-shadow: 0px 0px 5px #888888;
@@ -19,6 +19,7 @@
         height: 120px;
         @include dflex-dir(center, column);
         flex-wrap: wrap;
+        box-shadow: 0px 2px 3px #888888;
         & > p{
             position: relative;
             z-index: 999;
@@ -111,6 +112,53 @@
                 background-color: rgba(66, 20, 20, 0.7);
             }
         }
+        .update-success-noti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            background-color: #f8b349;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 1s ease;
+            overflow: hidden;
+            @include dflex(center, center);
+            .noti {
+                width: 186.5px;
+                height: 154px;
+                margin-bottom: 3rem;
+                .dog {
+                    background-image: url('../../assets/graphics/cute-dog.png');
+                    background-repeat: no-repeat;
+                    background-size: 7480px 154px;
+                    width: 186.5px;
+                    height: 154px;
+                }
+                p {
+                    font-family: 'TekoBold';
+                    text-align: center;
+                    text-transform: uppercase;
+                    font-size: 20px;
+                    opacity: 0;
+                    filter: drop-shadow(0px 0px 4px #797979);
+                }
+            }
+        }
+        .update-success-noti.active {
+            visibility: visible;
+            opacity: 1;
+            .noti {
+                .dog {
+                    animation: dog-appear 2s steps(40) forwards;
+                }
+                p {
+                    opacity: 1;
+                    animation: zoom-text 2s ease;
+                }
+            }
+        }
         .data-entry {
             position: relative;
             width: 100%;
@@ -136,17 +184,17 @@
                 font-family: 'League_Spartan';
                 padding: 0px 6px;
                 color: rgb(94, 94, 94);
-            }
-            label::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background-color: #fff;
-                z-index: -1;
-                width: calc(100% + 10px);
-                height: calc(100% + 10px);
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: #fff;
+                    z-index: -1;
+                    width: calc(100% + 10px);
+                    height: calc(100% + 10px);
+                }
             }
             input {
                 padding: 3px 20px 2px 20px;
@@ -155,6 +203,27 @@
                 border: none;
                 background-color: transparent;
                 outline: none;
+            }
+            span {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                color: red;
+                font-family: 'MontserratBold';
+                font-size: 14px;
+                background: white;
+                padding: 0.5px 6.5px;
+                text-transform: uppercase;
+                border: 2px solid red;
+                border-radius: 50%;
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+            }
+            span.active {
+                visibility: visible;
+                opacity: 1;
             }
         }
         .phone-entry {
@@ -167,6 +236,7 @@
             .phone-holder {
                 width: 100%;
                 padding-top: 5px;
+                position: relative;
                 @include dflex-dir(flex-start, row);
                 input {
                     flex-grow: 1;
@@ -197,6 +267,27 @@
                     outline: none;
                     transition: box-shadow 0.2s ease;
                 }
+                span {
+                    position: absolute;
+                    top: 54%;
+                    right: 10px;
+                    transform: translateY(-50%);
+                    color: red;
+                    font-family: 'MontserratBold';
+                    font-size: 14px;
+                    background: white;
+                    padding: 0.5px 6.5px;
+                    text-transform: uppercase;
+                    border: 2px solid red;
+                    border-radius: 50%;
+                    visibility: hidden;
+                    opacity: 0;
+                    transition: opacity 0.2s ease;
+                }
+                span.active {
+                    visibility: visible;
+                    opacity: 1;
+                }
             }
         }
         .management {
@@ -205,6 +296,10 @@
             text-align: end;
             button {
                 cursor: pointer;
+                transition: all 0.2s ease;
+                &:hover {
+                    filter: brightness(1.2) drop-shadow(0px 0px 4px #d1d1d1);
+                }
                 &:nth-child(1) {
                     font-family: 'MontserratMedium';
                     padding: 8px 20px;
@@ -235,4 +330,37 @@
 @keyframes lock-gif {
     0% { background-position: 0 0; }
     100% { background-position: -4788px 0; }
+}
+@keyframes dog-appear {
+    0% { background-position: 0 0; }
+    100% { background-position: -7460px 0 }
+}
+@keyframes zoom-text {
+    0% { transform: translateY(3em) scale(0); }
+    20% { transform: translateY(0) scale(1.2); }
+    30% { transform: translateY(1em) scale(1); }
+    60% { transform: translateY(1em) scale(1); }
+    80% { transform: translateY(3em) scale(0); }
+    100% { transform: translateY(3em) scale(0); }
+}
+
+
+@media (max-width: 992px) {
+    .profile {
+        margin-bottom: 5rem;
+    }
+}
+@media (max-width: 500px) {
+    .profile {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        margin-bottom: 4rem;
+        .profile-banner {
+            border-radius: 0;
+            .dark-background {
+                border-radius: 0;
+            }
+        }
+    }
 }

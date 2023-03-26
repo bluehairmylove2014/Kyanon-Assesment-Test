@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const multer = require('multer');
-const uploada = multer({ dest: 'avatar/' });
 
 const {
     getData,

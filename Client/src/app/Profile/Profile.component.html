@@ -12,9 +12,17 @@
                 <span>login to unlock profile</span>
             </div>
         </div>
+        <div class="update-success-noti" #updateSuccessNoti>
+            <div class="noti">
+                
+                <p>Success</p>
+                <div class="dog"></div>
+            </div>
+        </div>
         <div class="data-entry">
             <label for="fullname-input">Full name:</label>
             <input type="text" id="fullname-input" [(ngModel)]="ud_tempVersion.fullname" name="fullname"/>
+            <span class="data-entry-error" id="fullname-error"><b>!</b></span>
         </div>
 
         <div class="data-entry">
@@ -25,6 +33,7 @@
         <div class="data-entry">
             <label for="pemail-input">Email:</label>
             <input type="email" id="pemail-input"  [(ngModel)]="ud_tempVersion.email" name="pemail"/>
+            <span class="data-entry-error" id="pemail-error"><b>!</b></span>
         </div>
 
         <div class="phone-entry">
@@ -42,6 +51,7 @@
                   </select>
                   
                 <input type="text" [(ngModel)]="ud_tempVersion.phone" name="phone" [disabled]="isDisabled"/>
+                <span class="data-entry-error" id="phone-error"><b>!</b></span>
             </div>
         </div>
         <div class="management">
