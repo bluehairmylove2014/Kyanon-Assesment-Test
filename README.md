@@ -18,7 +18,7 @@ Kyanon-Assessment-Test is a website development requirement that includes a logi
 # Met Requirements:
 
 - Use Angular framework
-- Do not use pre-existing UI libraries such as Tailwind, Bootstrap, or Ant Design. Instead, use pure SCSS.
+- Do not use any UI libraries such as Tailwind, Bootstrap, or Ant Design. Instead, use pure SCSS.
 - Use animation to enhance the visual appeal of the interface (self-coded and not using any libraries)
 - Display on various aspect ratios (responsive)
 - Use Typescript.
